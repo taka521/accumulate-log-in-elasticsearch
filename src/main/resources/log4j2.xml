@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="OFF">
+
+    <Properties>
+        <Property name="loglayout">[%d{yyyy-MM-dd HH:mm:ss.SSS}],%-5p,%t,%c:%m%n</Property>
+    </Properties>
+
+    <Appenders>
+        <Console name="CONSOLE" target="SYSTEM_OUT">
+            <PatternLayout pattern="${loglayout}"/>
+        </Console>
+        <Socket name="LOG_STASH" host="localhost" port="5044" >
+            <JsonLayout compact="true" eventEol="true" />
+        </Socket>
+    </Appenders>
+
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="CONSOLE" />
+            <AppenderRef ref="LOG_STASH" />
+        </Root>
+    </Loggers>
+
+</Configuration>
